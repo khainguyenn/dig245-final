@@ -3,22 +3,40 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>DarkPattern Explorer</title>
+  <title>Deceptive Design Quiz</title>
   <link rel="stylesheet" href="assets/css/styles.css">
 </head>
 <body>
   <header>
-    <h1>DarkPattern Explorer</h1>
+    <h1>Deceptive</h1>
+    <div>
+      <button id="reset-button">Reset Quiz</button>
+      <button id="next-question-button" class="hidden">Next Question</button>
+    </div>
   </header>
 
-  <div class="quiz-container">
-    <h2>Which one is a dark pattern?</h2>
-    <img src="assets/img/cat.jpg" alt="Option 1" id="option1">
-    <img src="assets/img/photoshop-joy.jpg" alt="Option 2" id="option2">
-  </div>
+  <main id="quiz-content">
+    <!-- Question 1 -->
+    <div class="quiz-container" id="question1">
+      <div class="option" id="option1">
+        <img src="assets/img/option1.jpg" alt="Option 1">
+      </div>
+      <div class="option" id="option2">
+        <img src="assets/img/option2.jpg" alt="Option 2">
+      </div>
+    </div>
+
+    <!-- Question 2 (Hidden initially) -->
+    <div class="quiz-container hidden" id="question2">
+      <div class="option" id="option3">
+        <img src="assets/img/option4.jpg" alt="Option 3">
+      </div>
+      <div class="option" id="option4">
+        <img src="assets/img/option3.jpg" alt="Option 4">
+      </div>
+    </div>
+  </main>
 
   <script src="assets/js/main.js"></script>
 </body>
 </html>
-
-
