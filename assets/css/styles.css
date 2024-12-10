@@ -22,6 +22,12 @@ header h1 {
     font-weight: bold;
 }
 
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 15px; /* Add spacing between elements */
+}
+
 header button {
     background-color: #3A10E5;
     color: white;
@@ -30,11 +36,20 @@ header button {
     padding: 10px 20px;
     font-size: 16px;
     cursor: pointer;
-    margin-left: 5px;
 }
 
 header button:hover {
     background-color: #2C0CB8;
+}
+
+/* Score Display */
+.score-display {
+    font-size: 18px;
+    font-weight: bold;
+    color: white;
+    background-color: #155724;
+    padding: 5px 10px;
+    border-radius: 5px;
 }
 
 /* Main Content Styles */
@@ -111,6 +126,8 @@ main {
     font-weight: normal;
     line-height: 1.5;
 }
+
+/* Notification Box */
 .notification-box {
     position: fixed;
     bottom: 50px;
@@ -128,10 +145,20 @@ main {
     animation: fadeInOut 1s ease forwards;
 }
 
-
-
-
 /* Utility Classes */
 .hidden, .d-none {
     display: none !important;
 }
+
+
+@media (max-width: 576px) {
+    header h1 {
+      display: none;
+    }
+  
+    .header-right {
+      margin-left: auto; 
+      display: flex;
+      gap: 15px; 
+    }
+  }

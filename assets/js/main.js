@@ -2,6 +2,13 @@ const resetButton = document.getElementById('reset-button');
 const nextQuestionButton = document.getElementById('next-question-button');
 const question1 = document.getElementById('question1');
 const question2 = document.getElementById('question2');
+const scoreDisplay = document.getElementById('score'); 
+
+let score = 0; 
+// Function to update the score display
+function updateScoreDisplay() {
+  scoreDisplay.textContent = score;
+}
 
 // Function to show notification
 function showNotification(message) {
@@ -11,7 +18,6 @@ function showNotification(message) {
 
   document.body.appendChild(notification);
 
-  
   setTimeout(() => {
     notification.remove();
   }, 2000);
@@ -20,7 +26,9 @@ function showNotification(message) {
 // Handle Question 1
 document.querySelectorAll('#question1 .option').forEach(option => {
   option.addEventListener('click', () => {
-    if (option.id === 'option2') { // Correct answer for Question 1
+    if (option.id === 'option2') {
+      score += 30; 
+      updateScoreDisplay();
       const wrongOption = document.getElementById('option1');
       wrongOption.innerHTML = `
         <div class="replaced">
@@ -29,7 +37,7 @@ document.querySelectorAll('#question1 .option').forEach(option => {
             T-Mobile arranges plans to show the most expensive option first, while the cheapest plan is hidden far to the left, requiring excessive scrolling to find. This manipulates users into choosing pricier plans. To avoid this, <b>take your time</b>, <b>explore all options</b>, and <b>look closely for any hidden or less visible deals</b> before deciding.
           </p>
         </div>`;
-      nextQuestionButton.classList.remove('d-none'); // Show the Next Question button
+      nextQuestionButton.classList.remove('d-none'); 
     } else {
       showNotification("Wrong answer! Please try again.");
     }
@@ -43,10 +51,12 @@ nextQuestionButton.addEventListener('click', () => {
   nextQuestionButton.classList.add('d-none'); 
 });
 
-
+// Handle Question 2
 document.querySelectorAll('#question2 .option').forEach(option => {
   option.addEventListener('click', () => {
     if (option.id === 'option4') { 
+      score += 30; 
+      updateScoreDisplay(); 
       const wrongOption = document.getElementById('option3');
       wrongOption.innerHTML = `
         <div class="replaced">
@@ -63,5 +73,7 @@ document.querySelectorAll('#question2 .option').forEach(option => {
 
 
 resetButton.addEventListener('click', () => {
-  location.reload();
+  score = 0; 
+  updateScoreDisplay(); 
+  location.reload(); 
 });
