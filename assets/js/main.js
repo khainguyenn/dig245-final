@@ -44,12 +44,24 @@ document.querySelectorAll('#question1 .option').forEach(option => {
   });
 });
 
-// Handle Next Question Button Click
 nextQuestionButton.addEventListener('click', () => {
   question1.classList.add('d-none'); 
   question2.classList.remove('d-none'); 
   nextQuestionButton.classList.add('d-none'); 
 });
+
+function showFinishButton() {
+  const finishButton = document.createElement('div');
+  finishButton.className = 'finish-box';
+  finishButton.textContent = 'Finish Quiz';
+  document.body.appendChild(finishButton);
+
+
+  finishButton.addEventListener('click', () => {
+    saveScore(); 
+    window.location.href = 'scoreboard.html'; 
+  });
+}
 
 // Handle Question 2
 document.querySelectorAll('#question2 .option').forEach(option => {
@@ -65,6 +77,7 @@ document.querySelectorAll('#question2 .option').forEach(option => {
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus lacinia odio vitae vestibulum vestibulum. Cras venenatis euismod malesuada.
           </p>
         </div>`;
+      showFinishButton(); 
     } else {
       showNotification("Wrong answer! Please try again.");
     }
@@ -76,4 +89,14 @@ resetButton.addEventListener('click', () => {
   score = 0; 
   updateScoreDisplay(); 
   location.reload(); 
+});
+
+
+function saveScore() {
+  localStorage.setItem('userScore', score);
+}
+
+showFinishButton.addEventListener('click', () => {
+  saveScore(); // Save the score
+  window.location.href = 'scoreboard.html'; 
 });
