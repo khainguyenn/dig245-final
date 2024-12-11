@@ -1,6 +1,8 @@
 const resetButton = document.getElementById('reset-button');
 const nextQuestionButton = document.getElementById('next-question-button');
 const question1 = document.getElementById('question1');
+const question3 = document.getElementById('question3');
+const question4 = document.getElementById('question4');
 const question2 = document.getElementById('question2');
 const scoreDisplay = document.getElementById('score'); 
 
@@ -44,11 +46,60 @@ document.querySelectorAll('#question1 .option').forEach(option => {
   });
 });
 
-nextQuestionButton.addEventListener('click', () => {
-  question1.classList.add('d-none'); 
-  question2.classList.remove('d-none'); 
-  nextQuestionButton.classList.add('d-none'); 
+// Handle Question 2
+document.querySelectorAll('#question2 .option').forEach(option => {
+  option.addEventListener('click', () => {
+    if (option.id === 'option5') { // Left option is correct
+      score += 30;
+      updateScoreDisplay();
+      const wrongOption = document.getElementById('option6');
+      wrongOption.innerHTML = `
+        <div class="replaced">
+          <p class="title">Correct Answer: Placeholder Example</p>
+          <p class="text">Explanation for Question 3.</p>
+        </div>`;
+      nextQuestionButton.classList.remove('d-none');
+    } else {
+      showNotification("Wrong answer! Please try again.");
+    }
+  });
 });
+
+// Handle Question 3
+document.querySelectorAll('#question3 .option').forEach(option => {
+  option.addEventListener('click', () => {
+    if (option.id === 'option7') { // Left option is correct
+      score += 30;
+      updateScoreDisplay();
+      const wrongOption = document.getElementById('option8');
+      wrongOption.innerHTML = `
+        <div class="replaced">
+          <p class="title">Correct Answer: Placeholder Example</p>
+          <p class="text">Explanation for Question 4.</p>
+        </div>`;
+      nextQuestionButton.classList.remove('d-none');
+    } else {
+      showNotification("Wrong answer! Please try again.");
+    }
+  });
+});
+
+let currentQuestion = 1; // Track the current question number
+
+nextQuestionButton.addEventListener('click', () => {
+  const current = document.getElementById(`question${currentQuestion}`);
+  const next = document.getElementById(`question${currentQuestion + 1}`);
+
+  if (next) {
+    current.classList.add('d-none');
+    next.classList.remove('d-none'); 
+    currentQuestion++; // Increment the question number
+  }
+
+  // Hide the Next Question button after transitioning
+  nextQuestionButton.classList.add('d-none');
+});
+
 
 function showFinishButton() {
   const finishButton = document.createElement('div');
@@ -63,8 +114,8 @@ function showFinishButton() {
   });
 }
 
-// Handle Question 2
-document.querySelectorAll('#question2 .option').forEach(option => {
+// Handle Question 4
+document.querySelectorAll('#question4 .option').forEach(option => {
   option.addEventListener('click', () => {
     if (option.id === 'option4') { 
       score += 30; 
